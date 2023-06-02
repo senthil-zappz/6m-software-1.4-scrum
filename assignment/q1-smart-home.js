@@ -8,25 +8,52 @@
 
 // Task: Add code here
 
-class TvSignal extends BaseSignal {
+class BaseSignal {
     constructor(){
-        // Add code here
+        if(this.constructor.name === "BaseSignal"){
+           throw new Error("This class cannot be instantiated");
+          
+        }
     }
+    send(type){
+
+        console.log(`Sending ${type} signal`);
+    }
+
+}
+
+class TvSignal extends BaseSignal {
+    constructor () {
+        super();
+       this.type = "tv";
+}
+send(){
+    super.send(this.type);
+}
 }
 
 class AirconSignal extends BaseSignal {
     constructor(){
-        // Add code here
+        super();
+        this.type = "aircon";
+    }
+    send(){
+        super.send(this.type);
     }
 }
 
 class DoorSignal extends BaseSignal {
     constructor(){
-        // Add code here
+        super();
+        this.type = "door";
     }
+    send(){
+        super.send(this.type);
+    }
+    
 }
 
-const tv = new TvSignal();
+var tv = new TvSignal();
 tv.send(); // prints "Sending tv signal"
 
 const door = new DoorSignal();
@@ -34,3 +61,5 @@ door.send(); // prints "Sending door signal"
 
 const aircon = new AirconSignal();
 aircon.send(); // prints "Sending aircon signal"
+
+//const NewSignal = new BaseSignal();
